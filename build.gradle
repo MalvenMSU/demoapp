@@ -3,6 +3,8 @@ plugins {
 	id 'org.springframework.boot' version '3.5.13'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'checkstyle'
+	id 'jacoco'
+	id 'com.github.spotbugs' version '6.0.7'
 }
 
 checkstyle {
@@ -34,4 +36,28 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+tasks.named('jacocoTestReport') {
+	dependsOn test
+	reports {
+		xml.required = true
+		html.required = true
+	}
+}
+
+spotbugs {
+	ignoreFailures = false
+}
+
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
+	reports {
+		html {
+			required = true
+		}
+		xml {
+			required = false
+		}
+	}
 }

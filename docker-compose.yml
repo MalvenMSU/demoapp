@@ -1,0 +1,21 @@
+services:
+  demo-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: demoapp-api
+    ports:
+      - "8080:8080"
+    environment:
+      # You can safely inject execution variables or secrets here into the container 
+      # since they were successfully uncoupled from the codebase
+      - DATABASE_URL=jdbc:h2:mem:ecommerce_container_db
+      - DATABASE_USERNAME=sa
+      - DATABASE_PASSWORD=
+      - SPRING_PROFILES_ACTIVE=docker
+    restart: unless-stopped
+
+    # If you ever migrate away from H2 to PostgreSQL or MySQL,
+    # you can simply add a database service block below and link it here:
+    # depends_on:
+    #   - psql-db
