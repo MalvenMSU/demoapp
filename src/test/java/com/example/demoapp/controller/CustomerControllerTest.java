@@ -1,6 +1,5 @@
 package com.example.demoapp.controller;
 
-import com.example.demoapp.model.Customer;
 import com.example.demoapp.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

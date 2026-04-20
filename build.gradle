@@ -2,6 +2,13 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.13'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'checkstyle'
+}
+
+checkstyle {
+	toolVersion = "10.15.0"
+	configFile = file("config/checkstyle/checkstyle.xml")
+	ignoreFailures = false // Ensures build fails on violations
 }
 
 group = 'com.example'
